@@ -1,0 +1,315 @@
+/* Premium EdTech Styling */
+
+:root {
+    --primary: #2563eb;
+    /* Education Blue */
+    --primary-dark: #1e40af;
+    --accent: #3b82f6;
+    --text-main: #111827;
+    --text-sub: #4b5563;
+    --bg-page: #f9fafb;
+    --card-bg: #ffffff;
+    --border-light: #e5e7eb;
+
+    /* Card Accents */
+    --concept-color: #3b82f6;
+    --intuition-color: #8b5cf6;
+    --math-color: #ef4444;
+    /* Math is 'Red/Serious' */
+    --example-color: #10b981;
+    --key-color: #f59e0b;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.app-container {
+    max-width: 1000px;
+    /* Readability width */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Nav */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-sub);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--primary);
+}
+
+.brand {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+}
+
+/* Header */
+.topic-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.level-pill {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 15px;
+    background: #e0e7ff;
+    color: var(--primary);
+}
+
+h1 {
+    font-family: 'Merriweather', serif;
+    /* Serif for titles = Academic feel */
+    font-size: 2.5rem;
+    margin: 0 0 15px 0;
+    color: #111827;
+}
+
+.motivation-text {
+    font-size: 1.25rem;
+    color: var(--text-sub);
+    font-style: italic;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Cards System */
+.cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Side by side for Concept/Intuition */
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+@media (max-width: 768px) {
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.learning-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    margin-bottom: 25px;
+    transition: transform 0.2s;
+}
+
+.learning-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+    padding: 15px 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.card-body {
+    padding: 25px;
+}
+
+/* Card Variants */
+.concept-card .card-header {
+    background: #eff6ff;
+    color: var(--concept-color);
+}
+
+.intuition-card .card-header {
+    background: #f5f3ff;
+    color: var(--intuition-color);
+}
+
+.math-card .card-header {
+    background: #fef2f2;
+    color: var(--math-color);
+}
+
+.example-card .card-header {
+    background: #ecfdf5;
+    color: var(--example-color);
+}
+
+.takeaways-card .card-header {
+    background: #fffbeb;
+    color: var(--key-color);
+}
+
+.summary-card .card-header {
+    background: #1f2937;
+    color: white;
+    justify-content: space-between;
+}
+
+.visual-card .card-header {
+    background: #fdf2f8; /* Pink tint */
+    color: #db2777; /* Pink-600 */
+}
+
+.video-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.video-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-color: #db2777;
+}
+
+.video-icon {
+    font-size: 24px;
+    color: #ef4444; /* YouTube Red */
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.video-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.05rem;
+}
+
+.video-info h4 a {
+    color: #111827;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.video-info h4 a:hover {
+    color: #db2777;
+}
+
+.channel-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 8px;
+    background: #f3f4f6;
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.video-reason {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+/* Content Typography */
+.card-body p {
+    margin-bottom: 1em;
+}
+
+.card-body ul {
+    padding-left: 20px;
+    margin-bottom: 1em;
+}
+
+.card-body li {
+    margin-bottom: 0.5em;
+}
+
+/* Math specific */
+.math-card .card-body {
+    font-size: 1.1rem;
+    background: #fffcfc;
+    /* Subtle tint */
+}
+
+/* AI Controls */
+.ai-controls {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.premium-btn {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.3);
+    transition: all 0.2s;
+}
+
+.premium-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(124, 58, 237, 0.4);
+}
+
+/* Quiz Hero */
+.quiz-hero {
+    text-align: center;
+    padding: 60px 0;
+    border-top: 1px solid var(--border-light);
+    margin-top: 40px;
+}
+
+.quiz-hero h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #1f2937;
+}
+
+.btn-quiz-start {
+    background: white;
+    border: 2px solid var(--text-main);
+    color: var(--text-main);
+    padding: 15px 40px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-quiz-start:hover {
+    background: var(--text-main);
+    color: white;
+}

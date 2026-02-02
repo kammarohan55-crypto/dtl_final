@@ -1,0 +1,48 @@
+{
+    "subject": "mathematics",
+    "overview": "Master mathematics from fundamentals through advanced calculus and statistics. Progress from basic algebra and equations to advanced probability, statistics, and mathematical analysis used in engineering and data science.",
+    "levels": {
+        "beginner": {
+            "name": "Beginner",
+            "description": "Foundation level - Build core understanding",
+            "modules": [
+                "Linear Equations",
+                "Quadratic Equations",
+                "Polynomials",
+                "Matrices",
+                "Determinants",
+                "System of Linear Equations"
+            ],
+            "prerequisites": "Basic familiarity with algebraic operations and mathematical notation",
+            "outcomes": "Strong foundational knowledge in algebra and linear systems to progress to calculus"
+        },
+        "intermediate": {
+            "name": "Intermediate",
+            "description": "Application level - Apply concepts to solve problems",
+            "modules": [
+                "Limits",
+                "Continuity",
+                "Differentiation",
+                "Applications of Derivatives",
+                "Integration",
+                "Applications of Integration"
+            ],
+            "prerequisites": "Completion of all beginner modules with 75%+ average",
+            "outcomes": "Ability to apply calculus to solve engineering and optimization problems"
+        },
+        "advanced": {
+            "name": "Advanced",
+            "description": "Expert level - Master complex techniques",
+            "modules": [
+                "Probability Basics",
+                "Random Variables",
+                "Probability Distributions",
+                "Mean, Variance and Standard Deviation",
+                "Correlation and Regression"
+            ],
+            "prerequisites": "Completion of all intermediate modules with 75%+ average",
+            "outcomes": "Professional-level expertise in probability and statistics for data analysis and machine learning"
+        }
+    },
+    "progression_logic": "Students must complete all modules in a level with an average quiz score of 75% or higher before advancing to the next level. Each module quiz must be passed with at least 75% to proceed to the next module within the same level."
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethical AI Curriculum Builder - Master Class</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/module.css?v=2">
+    <link rel="stylesheet" href="css/summary.css">
+    <link rel="stylesheet" href="css/quiz.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- MathJax for Beautiful LaTeX -->
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Minimal Nav -->
+        <nav class="top-nav">
+            <a href="roadmap.html" class="nav-link"><i class="fas fa-arrow-left"></i> Roadmap</a>
+            <span class="brand">Ethical AI / Master Class</span>
+        </nav>
+
+        <!-- Topic Header: The "Why" -->
+        <header class="topic-header">
+            <div id="moduleLevelBadge" class="level-pill">...</div>
+            <h1 id="moduleName">Topic Loading...</h1>
+            <p id="moduleMotivation" class="motivation-text">Loading motivation...</p>
+
+            <!-- Progress Status Display -->
+            <div id="moduleProgressStatus" style="
+                margin-top: 16px; 
+                padding: 12px 16px; 
+                border-radius: 8px; 
+                background: #f0f9ff; 
+                border-left: 4px solid #3b82f6;
+                display: none;
+                font-size: 14px;
+            ">
+                <span id="progressStatusText"></span>
+            </div>
+        </header>
+
+        <main id="moduleContent" style="display: none;">
+
+            <!-- 1. Concept Overview & Intuition -->
+            <div class="cards-grid">
+                <section class="learning-card concept-card">
+                    <div class="card-header"><i class="fas fa-lightbulb"></i> Concept Overview</div>
+                    <div class="card-body" id="conceptContent"></div>
+                </section>
+
+                <section class="learning-card intuition-card">
+                    <div class="card-header"><i class="fas fa-brain"></i> Intuition & Analogies</div>
+                    <div class="card-body" id="intuitionContent"></div>
+                </section>
+                </section>
+            </div>
+
+            <!-- 1.5. Visual Learning Resources (New) -->
+            <section class="learning-card visual-card" id="visualResourcesSection" style="display: none;">
+                <div class="card-header"><i class="fab fa-youtube"></i> Visual Learning Resources</div>
+                <div class="card-body" id="visualContent"></div>
+            </section>
+
+            <!-- 2. Mathematical Formulation (The "Hard" Part) -->
+            <section class="learning-card math-card">
+                <div class="card-header"><i class="fas fa-square-root-alt"></i> Mathematical Formulation</div>
+                <div class="card-body" id="mathContent"></div>
+            </section>
+
+            <!-- 3. Worked Example -->
+            <section class="learning-card example-card">
+                <div class="card-header"><i class="fas fa-pencil-ruler"></i> Worked Example</div>
+                <div class="card-body" id="exampleContent"></div>
+            </section>
+
+            <!-- 4. Key Takeaways -->
+            <section class="learning-card takeaways-card">
+                <div class="card-header"><i class="fas fa-key"></i> Key Takeaways</div>
+                <div class="card-body" id="takeawaysContent"></div>
+            </section>
+
+            <!-- AI Tools -->
+            <section class="ai-controls">
+                <button id="summarizeBtn" class="premium-btn">
+                    <i class="fas fa-sparkles"></i> AI Summary
+                </button>
+            </section>
+
+            <div id="loadingSpinner" class="spinner" style="display: none;"></div>
+
+            <!-- Summary Container -->
+            <section id="summaryContainer" class="learning-card summary-card" style="display: none;">
+                <div class="card-header">
+                    <span><i class="fas fa-robot"></i> AI Generated Summary</span>
+                    <button id="closeSummary" class="icon-btn">&times;</button>
+                </div>
+                <div class="card-body" id="summaryContent"></div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section class="quiz-hero">
+                <h2>Ready to Test Your Mastery?</h2>
+                <button id="startQuizBtn" class="btn-quiz-start">
+                    Start Interactive Quiz
+                </button>
+            </section>
+
+            <section id="quizContainer" class="quiz-interface" style="display: none;">
+                <div class="quiz-header">
+                    <h3>Skill Verification</h3>
+                    <div id="quizScore" class="score-display"></div>
+                </div>
+                <div id="quizQuestions" class="questions-stream"></div>
+                <div class="quiz-actions">
+                    <button id="submitQuizBtn" class="btn-submit">Submit Answers</button>
+                    <button id="retryQuizBtn" class="btn-retry" style="display: none;">Retry Module</button>
+                </div>
+                <div id="progressionMessage" class="progression-banner" style="display:none;"></div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/module.js?v=4"></script>
+    <script src="js/summarize.js?v=3"></script>
+    <script src="js/quiz.js?v=3"></script>
+</body>
+
+</html>

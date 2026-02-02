@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module Loading Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            color: #666;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .success {
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #ef4444;
+            font-weight: bold;
+        }
+
+        .info {
+            color: #3b82f6;
+        }
+
+        pre {
+            background: #f8f8f8;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🔧 Module Loading Diagnostic Tool</h1>
+
+    <div class="test-section">
+        <h2>Step 1: Test Curriculum Files</h2>
+        <button onclick="testCurricula()">Test All Curriculum Files</button>
+        <div id="curriculumResults"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Step 2: Test Module Loading</h2>
+        <select id="subjectSelect">
+            <option value="">-- Select Subject --</option>
+            <option value="mathematics">Mathematics</option>
+            <option value="programming_c">Programming C</option>
+            <option value="aiml">AIML</option>
+        </select>
+        <select id="levelSelect">
+            <option value="">-- Select Level --</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+        </select>
+        <button onclick="testModuleLoad()">Test Load Module</button>
+        <div id="moduleResults"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Step 3: LocalStorage Check</h2>
+        <button onclick="setTestModule()">Set Test Module (Math → Beginner → Linear Equations)</button>
+        <button onclick="checkLocalStorage()">Check LocalStorage</button>
+        <button onclick="clearLocalStorage()">Clear LocalStorage</button>
+        <div id="localStorageResults"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Step 4: Go to Actual Pages</h2>
+        <button onclick="window.location.href='roadmap.html'">Go to Roadmap</button>
+        <button onclick="window.location.href='module.html'">Go to Module Page</button>
+    </div>
+
+    <script>
+        async function testCurricula() {
+            const div = document.getElementById('curriculumResults');
+            div.innerHTML = '<p>Testing...</p>';
+
+            const subjects = ['mathematics', 'programming_c', 'aiml'];
+            let html = '';
+
+            for (const subject of subjects) {
+                try {
+                    const response = await fetch(`${subject}_curriculum.json`);
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+                    const data = await response.json();
+                    const moduleCount = Object.values(data.levels).reduce((sum, level) =>
+                        sum + (level.modules?.length || 0), 0);
+
+                    html += `<p class="success">✅ ${subject}_curriculum.json: ${moduleCount} modules</p>`;
+                } catch (error) {
+                    html += `<p class="error">❌ ${subject}: ${error.message}</p>`;
+                }
+            }
+
+            div.innerHTML = html;
+        }
+
+        async function testModuleLoad() {
+            const subject = document.getElementById('subjectSelect').value;
+            const level = document.getElementById('levelSelect').value;
+            const div = document.getElementById('moduleResults');
+
+            if (!subject || !level) {
+                div.innerHTML = '<p class="error">Please select both subject and level</p>';
+                return;
+            }
+
+            div.innerHTML = '<p>Loading...</p>';
+
+            try {
+                const response = await fetch(`${subject}_curriculum.json`);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+                const curriculum = await response.json();
+                const modules = curriculum.levels[level].modules;
+
+                let html = `<p class="success">✅ Found ${modules.length} modules in ${subject} → ${level}:</p><ul>`;
+
+                modules.forEach((mod, idx) => {
+                    const title = mod.module_header?.module_title || 'NO TITLE';
+                    const id = mod.module_id || 'NO ID';
+                    html += `<li>${idx + 1}. ${title} (ID: ${id})</li>`;
+                });
+
+                html += '</ul>';
+
+                // Test loading first module
+                const firstModule = modules[0];
+                html += `<h3>Testing First Module Data:</h3>`;
+                html += `<pre>${JSON.stringify({
+                    module_id: firstModule.module_id,
+                    title: firstModule.module_header?.module_title,
+                    has_theory: !!firstModule.theory,
+                    has_formulas: !!firstModule.mathematical_formulation,
+                    has_examples: !!firstModule.worked_examples,
+                    has_quiz: !!firstModule.quiz
+                }, null, 2)}</pre>`;
+
+                div.innerHTML = html;
+            } catch (error) {
+                div.innerHTML = `<p class="error">❌ Error: ${error.message}</p>`;
+            }
+        }
+
+        function setTestModule() {
+            localStorage.setItem('selectedSubject', 'mathematics');
+            localStorage.setItem('selectedLevel', 'beginner');
+            localStorage.setItem('selectedModuleId', 'linear_equations');
+            checkLocalStorage();
+        }
+
+        function checkLocalStorage() {
+            const div = document.getElementById('localStorageResults');
+            const subject = localStorage.getItem('selectedSubject');
+            const level = localStorage.getItem('selectedLevel');
+            const moduleId = localStorage.getItem('selectedModuleId');
+
+            let html = '<h3>LocalStorage Values:</h3>';
+            html += `<p>Subject: ${subject || '<span class="error">NOT SET</span>'}</p>`;
+            html += `<p>Level: ${level || '<span class="error">NOT SET</span>'}</p>`;
+            html += `<p>Module ID: ${moduleId || '<span class="error">NOT SET</span>'}</p>`;
+
+            if (subject && level && moduleId) {
+                html += '<p class="success">✅ All values set! You can now go to module.html</p>';
+            } else {
+                html += '<p class="error">❌ Some values missing. Click "Set Test Module" above.</p>';
+            }
+
+            div.innerHTML = html;
+        }
+
+        function clearLocalStorage() {
+            localStorage.removeItem('selectedSubject');
+            localStorage.removeItem('selectedLevel');
+            localStorage.removeItem('selectedModuleId');
+            checkLocalStorage();
+        }
+
+        // Auto-run tests on load
+        window.addEventListener('load', () => {
+            testCurricula();
+            checkLocalStorage();
+        });
+    </script>
+</body>
+
+</html>

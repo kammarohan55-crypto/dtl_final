@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Accessibility Test</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #00ff00;
+        }
+
+        h1 {
+            color: #00ff00;
+        }
+
+        .test-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: #2a2a2a;
+            border-left: 3px solid #666;
+        }
+
+        .success {
+            border-left-color: #00ff00;
+        }
+
+        .error {
+            border-left-color: #ff0000;
+            color: #ff0000;
+        }
+
+        .info {
+            color: #00aaff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🔍 Curriculum File Accessibility Test</h1>
+    <div id="results"></div>
+
+    <script>
+        const files = [
+            'mathematics_curriculum.json',
+            'programming_c_curriculum.json',
+            'aiml_curriculum.json'
+        ];
+
+        const resultsDiv = document.getElementById('results');
+
+        async function testFile(filename) {
+            const div = document.createElement('div');
+            div.className = 'test-item';
+            div.innerHTML = `<strong>Testing: ${filename}</strong><br>`;
+
+            try {
+                const response = await fetch(filename);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const moduleCount = Object.values(data.levels).reduce((sum, level) =>
+                        sum + (level.modules?.length || 0), 0);
+
+                    div.className += ' success';
+                    div.innerHTML += `✅ SUCCESS<br>`;
+                    div.innerHTML += `<span class="info">Status: ${response.status}<br>`;
+                    div.innerHTML += `Size: ${(response.headers.get('content-length') / 1024).toFixed(1)} KB<br>`;
+                    div.innerHTML += `Modules: ${moduleCount}</span>`;
+                } else {
+                    div.className += ' error';
+                    div.innerHTML += `❌ HTTP ERROR: ${response.status} ${response.statusText}`;
+                }
+            } catch (error) {
+                div.className += ' error';
+                div.innerHTML += `❌ FETCH ERROR: ${error.message}`;
+            }
+
+            resultsDiv.appendChild(div);
+        }
+
+        async function runTests() {
+            resultsDiv.innerHTML = '<div class="test-item info">Running tests...</div>';
+            resultsDiv.innerHTML = '';
+
+            for (const file of files) {
+                await testFile(file);
+            }
+
+            // Test localStorage
+            const div = document.createElement('div');
+            div.className = 'test-item';
+            div.innerHTML = `<strong>LocalStorage Check</strong><br>`;
+            const subject = localStorage.getItem('selectedSubject');
+            const level = localStorage.getItem('selectedLevel');
+            const moduleId = localStorage.getItem('selectedModuleId');
+
+            if (subject && level && moduleId) {
+                div.className += ' success';
+                div.innerHTML += `✅ Values present<br>`;
+                div.innerHTML += `<span class="info">Subject: ${subject}<br>`;
+                div.innerHTML += `Level: ${level}<br>`;
+                div.innerHTML += `Module ID: ${moduleId}</span>`;
+            } else {
+                div.className += ' error';
+                div.innerHTML += `❌ Missing values<br>`;
+                div.innerHTML += `<span class="info">Subject: ${subject || 'NOT SET'}<br>`;
+                div.innerHTML += `Level: ${level || 'NOT SET'}<br>`;
+                div.innerHTML += `Module ID: ${moduleId || 'NOT SET'}</span>`;
+            }
+            resultsDiv.appendChild(div);
+        }
+
+        runTests();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+{
+    "subject": "aiml",
+    "overview": "Learn AI and Machine Learning from foundational concepts through advanced techniques. Build theoretical understanding of intelligent systems, machine learning algorithms, and their practical applications in real-world scenarios.",
+    "levels": {
+        "beginner": {
+            "name": "Beginner",
+            "description": "Foundation level - Build core understanding",
+            "modules": [
+                "Introduction to Artificial Intelligence",
+                "Intelligent Agents",
+                "Problem Solving in AI",
+                "Introduction to Machine Learning",
+                "Types of Machine Learning"
+            ],
+            "prerequisites": "Basic programming concepts and familiarity with mathematics",
+            "outcomes": "Strong foundational knowledge in AI/ML concepts and terminology"
+        },
+        "intermediate": {
+            "name": "Intermediate",
+            "description": "Application level - Apply concepts to solve problems",
+            "modules": [
+                "Supervised Learning",
+                "Unsupervised Learning",
+                "Linear Regression (Conceptual)",
+                "Classification Concepts",
+                "Clustering Concepts"
+            ],
+            "prerequisites": "Completion of all beginner modules with 75%+ average",
+            "outcomes": "Ability to understand and apply core machine learning algorithms"
+        },
+        "advanced": {
+            "name": "Advanced",
+            "description": "Expert level - Master complex techniques",
+            "modules": [
+                "Model Evaluation Metrics",
+                "Overfitting and Underfitting",
+                "Bias and Variance",
+                "Applications of AI",
+                "Limitations and Ethical Issues in AI"
+            ],
+            "prerequisites": "Completion of all intermediate modules with 75%+ average",
+            "outcomes": "Professional-level expertise in ML model evaluation, optimization, and understanding of AI applications and ethics"
+        }
+    },
+    "progression_logic": "Students must complete all modules in a level with an average quiz score of 75% or higher before advancing to the next level. Each module quiz must be passed with at least 75% to proceed to the next module within the same level."
+}

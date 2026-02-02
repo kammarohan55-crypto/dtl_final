@@ -1,0 +1,51 @@
+{
+    "subject": "programming_c",
+    "overview": "Master C programming from syntax basics to system-level programming. Learn to write efficient, low-level code, understand memory management, and master advanced programming techniques used in embedded systems and systems programming.",
+    "levels": {
+        "beginner": {
+            "name": "Beginner",
+            "description": "Foundation level - Build core understanding",
+            "modules": [
+                "Introduction to C",
+                "Structure of a C Program",
+                "Variables and Data Types",
+                "Constants in C",
+                "Operators in C",
+                "Control Statements",
+                "Loops in C"
+            ],
+            "prerequisites": "Basic computer literacy and problem-solving skills",
+            "outcomes": "Strong foundational knowledge in C syntax and basic programming constructs"
+        },
+        "intermediate": {
+            "name": "Intermediate",
+            "description": "Application level - Apply concepts to solve problems",
+            "modules": [
+                "Functions in C",
+                "Arrays in C",
+                "Strings in C",
+                "Pointers Basics",
+                "Structures",
+                "Unions",
+                "File Handling in C"
+            ],
+            "prerequisites": "Completion of all beginner modules with 75%+ average",
+            "outcomes": "Ability to write modular programs with data structures and file operations"
+        },
+        "advanced": {
+            "name": "Advanced",
+            "description": "Expert level - Master complex techniques",
+            "modules": [
+                "Dynamic Memory Allocation",
+                "Advanced Pointers",
+                "Preprocessor Directives",
+                "Multi-file Programs",
+                "Bit Manipulation",
+                "Error Handling in C"
+            ],
+            "prerequisites": "Completion of all intermediate modules with 75%+ average",
+            "outcomes": "Professional-level expertise in systems programming and advanced C techniques"
+        }
+    },
+    "progression_logic": "Students must complete all modules in a level with an average quiz score of 75% or higher before advancing to the next level. Each module quiz must be passed with at least 75% to proceed to the next module within the same level."
+}
